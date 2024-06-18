@@ -1,14 +1,14 @@
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import MessagesForm from "./components/MessagesForm";
+import MessagesList from "./components/MessagesBox/MessagesList";
 
 function App() {
   return (
     <div className="App">
       <Header/>
 
-      <MessagesForm/>
-      
+      <MessagesList/>
+
       <Footer/>
     </div>
   );
