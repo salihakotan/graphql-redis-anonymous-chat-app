@@ -19,3 +19,10 @@ mutation newMessage($text:String!){
     }
 }
 `
+
+
+export const MESSAGE_CREATED_SUBSCRIPTION=gql`
+subscription messageCreated{
+  messageCreated{id,text}
+}
+`

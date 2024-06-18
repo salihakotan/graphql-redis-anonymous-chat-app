@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { NEW_MESSAGE_MUTATION } from './queries'
 
 function MessageInput() {
@@ -9,6 +9,8 @@ function MessageInput() {
 
   const [saveMessage,{loading}] = useMutation(NEW_MESSAGE_MUTATION)
 
+  const inputRef = useRef()
+
 
   const handleClick = ()=> {
     saveMessage({
@@ -17,6 +19,9 @@ function MessageInput() {
       }
     })
 
+
+      inputRef.current?.focus();
+    
 
     setMessageText("")
 
@@ -36,7 +41,7 @@ function MessageInput() {
 
   return (
     <div className='messageInputBox'>
-            <input onKeyDown={handleKeyDown} value={messageText} onChange={handleChangeMessage} disabled={loading} className='messageInput' placeholder='Enter a message...'></input>
+            <input ref={inputRef}  autoFocus onKeyDown={handleKeyDown} value={messageText} onChange={handleChangeMessage} disabled={loading} className='messageInput' placeholder='Enter a message...'></input>
             <button onClick={handleClick} disabled={loading} className='sendMessageBtn'>Send</button>
         </div>
   )

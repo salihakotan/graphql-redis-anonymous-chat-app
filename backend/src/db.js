@@ -2,7 +2,7 @@
  const messages=[
     {
         id: 1,
-        text: "Hi, how are you today?"
+        text: "Hi, how are you today?",
     },
     {
         id: 2,

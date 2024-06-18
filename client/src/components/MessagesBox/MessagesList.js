@@ -1,11 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MessageInput from "./MessageInput";
 import { useQuery } from "@apollo/client";
-import { GET_MESSAGES_QUERY } from "./queries";
+import { GET_MESSAGES_QUERY, MESSAGE_CREATED_SUBSCRIPTION } from "./queries";
 import ScrollableFeed from "react-scrollable-feed"
 
 function MessagesList() {
-  const { data, error, loading } = useQuery(GET_MESSAGES_QUERY);
+  const {called,data, error, loading,subscribeToMore} = useQuery(GET_MESSAGES_QUERY);
+
+
+  useEffect(()=> {
+
+    if(!loading && called){
+      subscribeToMore({
+        document:MESSAGE_CREATED_SUBSCRIPTION,
+        updateQuery: (prev, {subscriptionData})=> {
+
+          if(!subscriptionData.data) return prev.messages
+
+          return {
+            messages:[
+              ...prev.messages,
+              subscriptionData.data.messageCreated
+             
+            ]
+          }
+
+        }
+      })
+    }
+
+
+  },[subscribeToMore,loading, called])
+  
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -13,7 +40,11 @@ function MessagesList() {
 
   if (error) {
     return <div>Error: {error.message}</div>;
+
+    
   }
+
+
 
   const { messages } = data;
 
