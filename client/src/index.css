@@ -15,10 +15,68 @@ code {
 
 .header{
 background-color: rgb(255, 198, 223);
-color:#760047
+color:#760047;
+text-align: center;
+min-height: 150px;
+align-items: center;
+display: flex;
+justify-content: center;
 }
 
 .footer{
   background-color: #760047;
   color: white;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.messagesBoxArea{
+height: 400px;
+background-color: #ffffff;
+justify-content: center;
+display: flex;
+}
+
+.messageListBox{
+  width: 80%;
+  border: 2px solid #ddd;
+  background-color: rgb(186, 239, 255);
+}
+
+.messageInputBox{
+  width: 80%;
+  background-color: white;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  margin: 50px auto 50px auto;
+
+}
+
+
+.messageInput{
+  width: 90%;
+  padding: 10px;
+
+}
+
+.messageItem{
+  background-color: #ff4196;
+  color: white;
+  border-radius: 5px;
+  margin: 20px;
+  width: fit-content;
+  padding: 15px;
+}
+
+.sendMessageBtn{
+  padding: 10px;
+  width:130px;
+  margin-left: 20px;
+  background-color: #760047;
+  color: white;
+  border-radius: 10px;
 }
