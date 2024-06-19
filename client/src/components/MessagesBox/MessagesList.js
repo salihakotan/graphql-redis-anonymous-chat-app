@@ -4,7 +4,20 @@ import { useQuery } from "@apollo/client";
 import { GET_MESSAGES_QUERY, MESSAGE_CREATED_SUBSCRIPTION } from "./queries";
 import ScrollableFeed from "react-scrollable-feed"
 
+import styles from "./styles.module.css"
+import uniqid from "uniqid"
+
 function MessagesList() {
+
+  const myUserId = localStorage.getItem("myUserId",uniqid())
+
+  if(!myUserId) {
+    localStorage.setItem("myUserId",uniqid())
+  }
+
+  
+
+  
   const {called,data, error, loading,subscribeToMore} = useQuery(GET_MESSAGES_QUERY);
 
 
@@ -58,8 +71,10 @@ function MessagesList() {
         {
           messages && (
             messages.map((message,i) => (
-              <div key={i} className="messageItem">{message.text}</div>
-
+              <div key={i} className={`${styles.messageItem} ${message.userId === myUserId ? styles.right : "" }`}>{message.text}
+             
+              </div>
+              
             ))
           )
         }
@@ -68,7 +83,7 @@ function MessagesList() {
         </div>
       </div>
 
-      <MessageInput />
+      <MessageInput myUserId={myUserId} />
     </div>
   );
 }

@@ -32,9 +32,10 @@ const schema = createSchema({
         },
       
         Mutation: {
-          newMessage: (parent, { text }) => {
+          newMessage: (parent, {userId, text }) => {
             const message = {
               id: uniqid(),
+              userId,
               text,
             };
                     
@@ -61,7 +62,7 @@ const schema = createSchema({
         }
       
         type Mutation {
-          newMessage(text: String!): Message!
+          newMessage(userId:ID!,text: String!): Message!
         }
       
         type Subscription{
@@ -70,6 +71,7 @@ const schema = createSchema({
       
         type Message {
           id: ID
+          userId:ID!
           text: String
         }
       `

@@ -6,15 +6,17 @@ query getMessages{
     messages{
         id,
         text
+        userId
     }
 }
 `
 
 export const NEW_MESSAGE_MUTATION =gql`
-mutation newMessage($text:String!){
-    newMessage(text:$text) {
+mutation newMessage($userId:ID!, $text:String!){
+    newMessage(userId:$userId, text:$text) {
             id
             text
+            userId
         
     }
 }
@@ -23,6 +25,6 @@ mutation newMessage($text:String!){
 
 export const MESSAGE_CREATED_SUBSCRIPTION=gql`
 subscription messageCreated{
-  messageCreated{id,text}
+  messageCreated{id,text,userId}
 }
 `

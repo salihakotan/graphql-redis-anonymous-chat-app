@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client'
 import React, { useRef, useState } from 'react'
 import { NEW_MESSAGE_MUTATION } from './queries'
 
-function MessageInput() {
+function MessageInput({myUserId}) {
 
   const [messageText, setMessageText] = useState("")
 
@@ -12,10 +12,12 @@ function MessageInput() {
   const inputRef = useRef()
 
 
+
   const handleClick = ()=> {
     saveMessage({
       variables:{
-        text:messageText
+        text:messageText,
+        userId:myUserId
       }
     })
 
