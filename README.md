@@ -8,4 +8,5 @@ This project assignment has been prepared for the 'Kodluyoruz' GraphQL course. A
 
 ---
 
+### Video:
 [![previewvid](https://img.youtube.com/vi/i7S5gVFddrQ/0.jpg)](https://www.youtube.com/watch?v=i7S5gVFddrQ)
